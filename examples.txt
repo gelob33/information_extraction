@@ -1,0 +1,408 @@
+examples = [
+    lx.data.ExampleData(
+        text="Your motorcycle is covered for any accidental physical loss or damage that occurs during the period of cover anywhere in New Zealand (including in transit between places in New Zealand).",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="base_coverage",
+                extraction_text="any accidental physical loss or damage",
+                attributes={
+                    "applies_to": "your motorcycle",
+                    "location_scope": "anywhere in New Zealand (including in transit between places in New Zealand)",
+                    "time_scope": "during the period of cover"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="We cover sudden and accidental loss to your home that happens during the period of insurance.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="base_coverage",
+                extraction_text="sudden and accidental loss to your home",
+                attributes={
+                    "time_scope": "during the period of insurance",
+                    "basis_of_settlement": "Sum insured replacement or Replacement per policy schedule triggers",
+                    "maximum_basis": "total sum insured or replacement cost up to floor area if fire under 'Replacement' basis"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="Lifestyle block fencing… The most we pay for an event is $5,000.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="optional_coverage",
+                extraction_text="Lifestyle block fencing",
+                attributes={
+                    "description": "We pay the reasonable cost you incur to repair or replace your lifestyle block fencing if it sustains sudden and accidental loss.",
+                    "purchase_required": True,
+                    "benefit_type": "optional",
+                    "sublimit_scope": "$5,000 per event"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="The only cover you have under a Third Party policy is 'Cover for your legal liability'.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="optional_coverage",
+                extraction_text="Third Party policy",
+                attributes={
+                    "description": "Cover for your legal liability only",
+                    "purchase_required": True,
+                    "benefit_type": "alternative cover level"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="up to $20 million for accidental loss or accidental damage to other people's property",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="limit",
+                extraction_text="up to $20 million",
+                attributes={
+                    "amount_numeric": 20000000,
+                    "currency": "NZD",
+                    "applies_to": "accidental loss or accidental damage to other people's property",
+                    "per_event_or_period": "per event or series of claims arising from one event"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="up to $1 million for bodily injury.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="limit",
+                extraction_text="up to $1 million",
+                attributes={
+                    "amount_numeric": 1000000,
+                    "currency": "NZD",
+                    "applies_to": "bodily injury",
+                    "per_event_or_period": "per event or series of claims"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="The most we pay for all items of jewellery and watches for an event, if they are not specified items, is $15,000 in total.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="limit",
+                extraction_text="$15,000 in total",
+                attributes={
+                    "amount_numeric": 15000,
+                    "currency": "NZD",
+                    "applies_to": "all items of jewellery and watches that are not specified",
+                    "per_event_or_period": "per event"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="the most we pay in total for an event for loss to: - all retaining walls is $50,000",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="limit",
+                extraction_text="$50,000",
+                attributes={
+                    "amount_numeric": 50000,
+                    "currency": "NZD",
+                    "applies_to": "all retaining walls",
+                    "per_event_or_period": "per event",
+                    "reduces_sums_insured": False
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="The most we pay for an event or a contamination claim for each residential dwelling… is $30,000. The amount we pay is in addition to any payment under 'Part one – cover for your home'.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="limit",
+                extraction_text="$30,000",
+                attributes={
+                    "amount_numeric": 30000,
+                    "currency": "NZD",
+                    "applies_to": "Temporary accommodation per residential dwelling",
+                    "per_event_or_period": "per event (or contamination claim)",
+                    "additional_to_other_payments": True
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="The Policy Schedule shows how much excess you have to pay.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="excess",
+                extraction_text="The Policy Schedule shows how much excess you have to pay.",
+                attributes={
+                    "amount_reference": "Policy Schedule",
+                    "excess_type": "standard"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="If one incident results in more than one claim under certain personal property policies… we deduct only the highest excess of the policies you are claiming under.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="excess",
+                extraction_text="we deduct only the highest excess of the policies you are claiming under.",
+                attributes={
+                    "excess_type": "cross-policy highest-excess rule",
+                    "applies_to": "boat, car, caravan, contents, home, landlord's, motorcycle, motorhome, residential contract works or trailer policy"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="You do not pay an excess if your claim is only for any key… to access your home… lost, stolen or believed… duplicated…",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="excess",
+                extraction_text="You do not pay an excess if your claim is only for any key…",
+                attributes={
+                    "excess_type": "excess-free",
+                    "applies_to": "replacement of keys and locks for home access/safe/strongroom"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="You do not pay an excess if your claim is only for clearing a blocked underground water or sewage pipe… The most we pay… is $500.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="excess",
+                extraction_text="You do not pay an excess if your claim is only for clearing a blocked underground water or sewage pipe…",
+                attributes={
+                    "excess_type": "excess-free",
+                    "applies_to": "clearing blocked underground water or sewage pipe",
+                    "linked_limit": "$500 per period"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="There is no cover if… is under the influence of drugs or other intoxicating substances…",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="exclusion",
+                extraction_text="There is no cover if… is under the influence of drugs or other intoxicating substances…",
+                attributes={
+                    "exclusion_category": "Accidents involving drugs or alcohol",
+                    "applies_to": "rider or person in charge"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="We do not cover… insects, rodents… vermin… This only applies to the part… directly affected, not to resultant sudden and accidental loss to other parts…",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="exclusion",
+                extraction_text="We do not cover… insects, rodents… vermin…",
+                attributes={
+                    "exclusion_category": "Home Insurance exclusions – Causes of loss",
+                    "carve_outs": "not to resultant sudden and accidental loss to other parts of your home"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="We do not cover anything caused by… intentional or reckless act… However, this exclusion does not apply to… loss resulting from fire or explosion, if… not intentionally caused by you or your partner…",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="exclusion",
+                extraction_text="We do not cover anything caused by… intentional or reckless act…",
+                attributes={
+                    "exclusion_category": "General exclusions",
+                    "carve_outs": "does not apply to resultant fire/explosion not intentionally caused by you or your partner"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="If NHCover applies, we pay the difference between: - your maximum entitlement… under the NHI Act - the amount payable… under 'What we pay – the most we pay' and 'What we pay – how we settle a claim'.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="base_coverage",
+                extraction_text="we pay the difference between… NHI Act… and the amount payable…",
+                attributes={
+                    "applies_to": "Natural hazard damage",
+                    "coverage_trigger": "NHCover applies",
+                    "cap": "most that you are entitled to receive… is your total sum insured"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="The most that you are entitled to receive for all loss caused by a natural hazard for an event is your total sum insured…",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="limit",
+                extraction_text="The most that you are entitled to receive… is your total sum insured",
+                attributes={
+                    "applies_to": "natural hazard loss per event",
+                    "per_event_or_period": "per event"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="The most we pay… is the replacement cost up to the floor area… if… basis… 'Replacement' and the loss is as a result of fire or explosion… and you repair or rebuild…",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="general_product_information",
+                extraction_text="The most we pay… is the replacement cost up to the floor area… if… 'Replacement'… fire or explosion…",
+                attributes={
+                    "topic": "Basis of settlement",
+                    "trigger": "Replacement basis + fire/explosion + repair/rebuild"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="You have a 15-day cooling-off period…",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="general_product_information",
+                extraction_text="15-day cooling-off period",
+                attributes={
+                    "topic": "Cooling-off"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="We do not cover loss or liability that is insured to any extent under any other insurance. We also do not contribute towards any claim under any other insurance.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="general_product_information",
+                extraction_text="We do not cover loss or liability that is insured to any extent under any other insurance…",
+                attributes={
+                    "topic": "Duplicate insurance"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="You must let us know as soon as possible if your circumstances change… we may cancel or change terms…",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="general_product_information",
+                extraction_text="You must let us know as soon as possible if your circumstances change…",
+                attributes={
+                    "topic": "Change in circumstances"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="We cover accidental hidden gradual damage to your home… The most we pay during the period of insurance is $3,000.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="limit",
+                extraction_text="$3,000",
+                attributes={
+                    "amount_numeric": 3000,
+                    "applies_to": "Hidden gradual damage to home",
+                    "per_event_or_period": "per period of insurance"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="We cover accidental hidden gradual damage to contents… The most we pay during the period of insurance is $3,000.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="limit",
+                extraction_text="$3,000",
+                attributes={
+                    "amount_numeric": 3000,
+                    "applies_to": "Hidden gradual damage to contents",
+                    "per_event_or_period": "per period of insurance"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="We deduct the 'Methamphetamine contamination excess'… shown in your policy schedule.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="excess",
+                extraction_text="We deduct the 'Methamphetamine contamination excess'… shown in your policy schedule.",
+                attributes={
+                    "excess_type": "meth contamination",
+                    "amount_reference": "policy schedule"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="The most we pay for a contamination claim for each residential dwelling… is $30,000.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="limit",
+                extraction_text="$30,000",
+                attributes={
+                    "amount_numeric": 30000,
+                    "applies_to": "methamphetamine contamination per dwelling",
+                    "per_event_or_period": "per contamination claim"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="Who is covered to ride my motorcycle? You, your spouse… and anyone who has a valid driver licence… unless… excluded in the Policy Schedule.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="general_product_information",
+                extraction_text="Who is covered to ride my motorcycle? You, your spouse… and anyone who has a valid driver licence…",
+                attributes={
+                    "topic": "Covered riders"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="There is no cover if your motorcycle is being ridden by… any person who: i is not legally allowed to ride… or ii is not riding according to the conditions of his or her driver's licence.",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="exclusion",
+                extraction_text="There is no cover if… not legally allowed to ride… or… not riding according to the conditions…",
+                attributes={
+                    "exclusion_category": "Unlicensed riders"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="You do not pay an excess if your claim is only for sudden and accidental breakage of… glass… sinks, baths…",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="excess",
+                extraction_text="You do not pay an excess if your claim is only for sudden and accidental breakage of…",
+                attributes={
+                    "excess_type": "excess-free",
+                    "applies_to": "glass and bathroom fixtures (optional benefit must be purchased)"
+                }
+            )
+        ]
+    ),
+    lx.data.ExampleData(
+        text="Your policy is a contract between you and us, and has three parts…",
+        extractions=[
+            lx.data.Extraction(
+                extraction_class="general_product_information",
+                extraction_text="Your policy is a contract between you and us, and has three parts",
+                attributes={
+                    "topic": "Policy definition"
+                }
+            )
+        ]
+    )
+]
